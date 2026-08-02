@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Certificate of Internship</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: none !important;
+      }
+
+      .certificate-container {
+        width: 100%;
+        height: 100%;
+        padding: 60px;
+        box-sizing: border-box;
+        background: linear-gradient(135deg, #fefefe, #e6e6e6);
+        border: 12px double #bfae91;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+        text-align: center;
+      }
+
+      .certificate-border {
+        border: 5px dashed #d4c1a3;
+        width: 100%;
+        height: 100%;
+        padding: 35px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .certificate-title {
+        font-family: "Great Vibes", cursive;
+        font-size: 60px;
+        color: #3e3e3e;
+        margin-bottom: 5px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        font-size: 24px;
+        margin-bottom: 40px;
+        color: #555;
+        letter-spacing: 1px;
+      }
+
+      .content {
+        font-size: 18px;
+        line-height: 1.9;
+        color: #333;
+        margin: 0 60px;
+        text-align: justify;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #2e2e2e;
+      }
+
+      ul {
+        margin-left: 40px;
+        margin-bottom: 20px;
+      }
+
+      .signature {
+        margin-top: 60px;
+        text-align: right;
+        margin-right: 70px;
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        color: #333;
+      }
+
+      .seal {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        width: 130px;
+        height: 130px;
+        background: radial-gradient(circle, #bfae91 0%, #7f664c 100%);
+        border-radius: 50%;
+        text-align: center;
+        line-height: 130px;
+        font-weight: bold;
+        color: #fff;
+        font-size: 14px;
+        transform: rotate(-10deg);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .watermark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 120px;
+        color: rgba(200, 200, 200, 0.15);
+        z-index: 0;
+        pointer-events: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="certificate-container">
+      <div class="certificate-border"></div>
+      <div class="watermark">XYNAPSE SYSTEM</div>
+
+      <div class="certificate-title">Certificate of Internship</div>
+      <div class="subtitle">This is to certify that</div>
+
+      <div class="content">
+        <p>
+          <span class="highlight"><%= name %></span> has successfully completed
+          the internship in <span class="highlight"><%= department %></span> at
+          <span class="highlight">XYNAPSE SYSTEM</span>.
+        </p>
+
+        <p>
+          During the internship period from
+          <span class="highlight"><%= certificateData.startDate %> to <%= certificateData.endDate %></span>, the intern
+          has:
+        </p>
+        <ul>
+          <% (certificateData.responsibilities || []).forEach(function(item) { %>
+          <li><%= item %></li>
+          <% }); %>
+        </ul>
+
+        <p>
+          We hereby recognize the efforts and contributions of
+          <span class="highlight"><%= name %></span> and wish them success in
+          their future endeavors.
+        </p>
+      </div>
+
+      <div class="signature">
+        <p>Sincerely,</p>
+        <p><strong><%= certificateData.signatoryName %></strong></p>
+        <p><%= certificateData.signatoryDesignation %></p>
+        <p>Institute Name</p>
+      </div>
+
+      <div class="seal">Institute Seal</div>
+    </div>
+  </body>
+</html>

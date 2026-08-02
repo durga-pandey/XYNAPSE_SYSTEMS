@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(270deg, #6366f1, #a855f7, #3b82f6);
+  background-size: 600% 600%;
+  animation: gradientShift 6s ease infinite, subtlePulse 2.5s ease-in-out infinite;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.login-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.15), transparent 70%);
+  transform: scale(0);
+  border-radius: inherit;
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+}
+
+.login-btn:hover::before {
+  transform: scale(4);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.login-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(270deg, #6366f1, #a855f7, #3b82f6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.login-btn:hover::after {
+  transform: scaleX(1);
+}
+
+.social-icon {
+  animation: floatPulse 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.1); }
+}
+
+.social-icon::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.social-icon:hover::before {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.social-icon:hover {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+

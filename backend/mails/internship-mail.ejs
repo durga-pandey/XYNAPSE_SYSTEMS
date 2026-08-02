@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Internship Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #eef2ff;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        color: #0f172a;
+      }
+
+      .container {
+        max-width: 620px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #0ea5e9, #6366f1, #9333ea);
+        text-align: center;
+        padding: 48px 24px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 30px;
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .content {
+        padding: 42px 36px;
+        text-align: center;
+      }
+
+      .content h2 {
+        font-size: 24px;
+        margin-bottom: 6px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .content h3 {
+        font-size: 17px;
+        margin-bottom: 18px;
+        color: #475569;
+        font-weight: 600;
+      }
+
+      .content p {
+        font-size: 15px;
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 26px;
+      }
+
+      .detail-box {
+        background-color: #eef2ff;
+        padding: 20px 28px;
+        border-radius: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 26px;
+        text-align: left;
+        line-height: 1.6;
+        box-shadow: inset 0 2px 4px rgba(99, 102, 241, 0.15);
+      }
+
+      .footer {
+        background-color: #f8fafc;
+        padding: 26px;
+        text-align: center;
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      .footer a {
+        color: #6366f1;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          margin: 24px;
+        }
+
+        .content {
+          padding: 32px 24px;
+        }
+
+        .detail-box {
+          font-size: 15px;
+          padding: 18px 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>New Internship Application</h1>
+      </div>
+
+      <div class="content">
+        <h2>Hello XYNAPSE SYSTEMS</h2>
+        <h3>You have a new internship applicant</h3>
+        <p>Below are the details submitted by the applicant:</p>
+
+        <div class="detail-box">
+          Name: <strong><%= application.name %></strong><br />
+          Email: <strong><%= application.email %></strong><br />
+          Phone: <strong><%= application.phone %></strong><br />
+          Course: <strong><%= application.courseId %></strong><br />
+          Year: <strong><%= application.year %></strong><br />
+          Department: <strong><%= application.department %></strong><br />
+          LinkedIn: <strong><%= application.linkedin || 'N/A' %></strong><br />
+          Portfolio: <strong><%= application.portfolio || 'N/A' %></strong
+          ><br />
+          <% if(application.resumeUrl?.secure_url){ %> Resume:
+          <a href="<%= application.resumeUrl.secure_url %>" target="_blank"
+            >Download</a
+          >
+          <% } %>
+        </div>
+
+        <p>Please review the application and take necessary actions.</p>
+      </div>
+
+      <div class="footer">
+        &copy; <%= new Date().getFullYear() %> Your Company. All rights
+        reserved.
+      </div>
+    </div>
+  </body>
+</html>

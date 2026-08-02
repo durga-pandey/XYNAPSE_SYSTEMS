@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  width: 100%;
+}
+
+:root {
+  --select-bg: #ffffff;
+  --select-bg-open: #f8fafc;
+  --select-border: #d1d5db;
+  --select-text: #111827;
+  --select-placeholder: #6b7280;
+}
+
+.dark {
+  --select-bg: #1f2937;
+  --select-bg-open: #111827;
+  --select-border: #374151;
+  --select-text: #f3f4f6;
+  --select-placeholder: #9ca3af;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply min-h-screen font-sans antialiased bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-50;
+  }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.marquee-item img {
+  display: block;
+  object-fit: contain;
+  height: 40px;
+  width: auto;
+}
+
+.perspective {
+  perspective: 1000px;
+}
+
+.earth-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.earth-sphere {
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+
+  background-image: url("/images/earth.jpg");
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+
+  animation: earth-rotate 14s linear infinite;
+
+  box-shadow:
+    inset -14px 0 22px rgba(0, 0, 0, 0.65),
+    inset 10px 0 18px rgba(255, 255, 255, 0.18),
+    0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.earth-sphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 68% 50%,
+    rgba(255, 255, 255, 0.15),
+    rgba(0, 0, 0, 0.9) 72%
+  );
+  pointer-events: none;
+}
+
+@keyframes earth-rotate {
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: -512px;
+  }
+}
+
+.brand-text {
+  /* display: flex; */
+  align-items: center;
+  width: max-content;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: #0f172a;
+  text-transform: uppercase;
+}
+
+.brand-text .gap {
+  width: 8px;
+}
+
+.brand-text span {
+  display: inline-block;
+  line-height: 1; /* baseline fix */
+  will-change: transform;
+  animation: text-float 2.6s ease-in-out infinite;
+}
+
+/* Proper sequential delays (gap skipped) */
+.brand-text span:nth-child(1) {
+  animation-delay: 0s;
+}
+.brand-text span:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.brand-text span:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.brand-text span:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.brand-text span:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.brand-text span:nth-child(6) {
+  animation-delay: 0.25s;
+}
+.brand-text span:nth-child(7) {
+  animation-delay: 0.3s;
+}
+/* 8th is gap */
+.brand-text span:nth-child(9) {
+  animation-delay: 0.35s;
+}
+.brand-text span:nth-child(10) {
+  animation-delay: 0.4s;
+}
+.brand-text span:nth-child(11) {
+  animation-delay: 0.45s;
+}
+.brand-text span:nth-child(12) {
+  animation-delay: 0.5s;
+}
+.brand-text span:nth-child(13) {
+  animation-delay: 0.55s;
+}
+.brand-text span:nth-child(14) {
+  animation-delay: 0.6s;
+}
+.brand-text span:nth-child(15) {
+  animation-delay: 0.65s;
+}
+
+@keyframes text-float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+    text-shadow: 0 4px 10px rgba(56, 189, 248, 0.28);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.75;
+  }
+}

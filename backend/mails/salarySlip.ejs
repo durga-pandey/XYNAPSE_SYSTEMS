@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Salary Slip - <%= employee.name %></title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      padding: 30px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #1e3a8a;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+      color: #1e3a8a;
+    }
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #555;
+    }
+    .section {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .section h2 {
+      font-size: 18px;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .info-grid div {
+      width: 48%;
+      margin-bottom: 10px;
+    }
+    .info-grid label {
+      font-weight: 500;
+      font-size: 13px;
+      color: #555;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .info-grid span {
+      font-weight: 700;
+      font-size: 14px;
+      color: #111;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    table th {
+      background-color: #1e3a8a;
+      color: #fff;
+      font-weight: 500;
+    }
+    .total {
+      text-align: right;
+      font-weight: 700;
+      font-size: 14px;
+      background-color: #f0f2f5;
+    }
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: auto;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>XYNAPSE SYSTEM</h1>
+      <p>Institute Salary Slip</p>
+    </div>
+
+    <div class="section">
+      <h2>Employee Information</h2>
+      <div class="info-grid">
+        <div>
+          <label>Employee Name:</label>
+          <span><%= employee.name %></span>
+        </div>
+        <div>
+          <label>Employee Code:</label>
+          <span><%= salarySlip.employeeCode %></span>
+        </div>
+        <div>
+          <label>Designation:</label>
+          <span><%= salarySlip.designation %></span>
+        </div>
+        <div>
+          <label>Department:</label>
+          <span><%= salarySlip.department || '-' %></span>
+        </div>
+        <div>
+          <label>Status:</label>
+          <span><%= salarySlip.status %></span>
+        </div>
+        <div>
+          <label>Contact Number:</label>
+          <span><%= salarySlip.contactNumber %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Salary Details</h2>
+      <div class="info-grid">
+        <div>
+          <label>Salary Amount:</label>
+          <span>₹<%= salarySlip.salary.toString() %></span>
+        </div>
+        <div>
+          <label>Bank Name:</label>
+          <span><%= salarySlip.bankDetails.bankName %></span>
+        </div>
+        <div>
+          <label>Account Number:</label>
+          <span><%= salarySlip.bankDetails.accountNumber %></span>
+        </div>
+        <div>
+          <label>IFSC Code:</label>
+          <span><%= salarySlip.bankDetails.ifscCode %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Address</h2>
+      <span>
+        <%= salarySlip.address.line1 %>, <%= salarySlip.address.line2 || '' %><br>
+        <%= salarySlip.address.city %>, <%= salarySlip.address.state %>, <%= salarySlip.address.country %> - <%= salarySlip.address.zipCode %>
+      </span>
+    </div>
+
+    <div class="section">
+      <h2>Salary History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Salary Paid (₹)</th>
+            <th>Paid On</th>
+            <th>Payment Method</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(salarySlip.salaryHistory.length > 0) { %>
+            <% salarySlip.salaryHistory.forEach(function(history) { %>
+              <tr>
+                <td><%= history.month %></td>
+                <td><%= history.salary.toString() %></td>
+                <td><%= new Date(history.paidOn).toLocaleDateString() %></td>
+                <td><%= history.paymentMethod %></td>
+                <td><%= history.notes || '-' %></td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5" style="text-align:center;">No payment history available</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <% if(salarySlip.notes) { %>
+      <p><strong>Notes:</strong> <%= salarySlip.notes %></p>
+    <% } %>
+
+    <div class="footer">
+      © <%= new Date().getFullYear() %> XYNAPSE SYSTEM. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

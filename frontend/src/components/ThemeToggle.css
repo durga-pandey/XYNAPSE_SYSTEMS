@@ -1,0 +1,66 @@
+.theme-toggle-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-toggle-checkbox {
+  display: none;
+}
+
+.theme-toggle-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label {
+  background-color: #4a5568;
+}
+
+.toggle-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.sun-icon {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.moon-icon {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label .sun-icon {
+  opacity: 0.4;
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label .moon-icon {
+  opacity: 1;
+}
+
+.toggle-circle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  transition: left 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-checkbox:checked + .theme-toggle-label .toggle-circle {
+  left: 34px;
+}

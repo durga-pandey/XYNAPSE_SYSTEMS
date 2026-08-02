@@ -1,0 +1,87 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: 72.61.227.169
+          username: root
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            set -e
+            PROJECT_DIR="/root/XYNAPSE_SYSTEMS"
+            REPO_URL="git@github.com:durga-pandey/XYNAPSE_SYSTEMS.git"
+            # Nginx Root exactly as per your nginx config file
+            NGINX_ROOT="/var/www/xynapsesystemsinstitute/dist"
+
+            echo "=== Starting Full Production Deployment ==="
+
+            # 1. Enter Project Directory & Fix Git Remote
+            mkdir -p $PROJECT_DIR
+            cd $PROJECT_DIR
+
+            if [ -d ".git" ]; then
+              echo "Updating Remote URL..."
+              git remote set-url origin $REPO_URL
+            else
+              echo "Initializing fresh Git..."
+              git clone $REPO_URL .
+            fi
+
+            # 2. Pull Latest Code from Prod Branch
+            echo "Fetching and resetting to origin/prod..."
+            git fetch origin prod
+            git reset --hard origin/prod
+
+            # 3. Inject Environment Variables
+            echo "${{ secrets.BACKEND_ENV }}" > backend/.env
+            echo "${{ secrets.FRONTEND_ENV }}" > frontend/.env
+
+            # 4. Backend Deployment
+            echo "--- Backend: Installing & Restarting ---"
+            cd backend
+            npm install --production
+            # Restart specifically the backend process
+            pm2 restart xynapsesystems-backend || pm2 start index.js --name xynapsesystems-backend
+            pm2 save
+
+            # 5. Frontend Build
+            echo "--- Frontend: Building Production Dist ---"
+            cd ../frontend
+            npm install --force
+            npm run build
+
+            # 6. Nginx Deployment (Atomic Clean & Copy)
+            echo "--- Deploying Static Assets to Nginx Root ---"
+            
+            # Ensure target directory exists
+            mkdir -p $NGINX_ROOT
+
+            # Clean ONLY the contents of the target dist, then copy new files
+            # The :? is a safety check to prevent rm -rf / if variable is empty
+            rm -rf ${NGINX_ROOT:?}/*
+            cp -r dist/* $NGINX_ROOT/
+
+            # 7. Permissions & Nginx Reload
+            echo "--- Setting Permissions & Reloading Nginx ---"
+            chown -R www-data:www-data $NGINX_ROOT
+            chmod -R 755 $NGINX_ROOT
+            
+            # Test nginx config before reload (Best practice)
+            nginx -t && systemctl reload nginx
+
+            # 8. Final Success Logging
+            COMMIT_HASH=$(git rev-parse --short HEAD)
+            DEPLOY_TIME=$(date '+%Y-%m-%d %H:%M:%S')
+            echo "Success: Deployed $COMMIT_HASH at $DEPLOY_TIME" >> $PROJECT_DIR/deploy.log
+            
+            echo "=== Deployment Completed Successfully ==="

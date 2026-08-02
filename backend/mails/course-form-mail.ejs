@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Course Form Submission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f3f4f6;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        color: #111827;
+      }
+
+      .container {
+        max-width: 620px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #3b82f6, #6366f1, #9333ea);
+        text-align: center;
+        padding: 48px 24px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .content {
+        padding: 40px 36px;
+      }
+
+      .content h2 {
+        font-size: 22px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: #111827;
+        text-align: center;
+      }
+
+      .content p {
+        font-size: 15px;
+        color: #4b5563;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .detail-box {
+        background-color: #eef2ff;
+        padding: 20px 28px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 28px;
+        line-height: 1.6;
+        box-shadow: inset 0 2px 4px rgba(99, 102, 241, 0.15);
+      }
+
+      .detail-box div {
+        margin-bottom: 12px;
+      }
+
+      .footer {
+        background-color: #f9fafb;
+        padding: 24px;
+        text-align: center;
+        font-size: 14px;
+        color: #6b7280;
+      }
+
+      .footer a {
+        color: #6366f1;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          margin: 24px;
+        }
+        .content {
+          padding: 32px 24px;
+        }
+        .detail-box {
+          font-size: 15px;
+          padding: 18px 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>New Course Application Received</h1>
+      </div>
+
+      <div class="content">
+        <h2>Hello Admin,</h2>
+        <p>
+          A new course application has been submitted. Please find the applicant
+          details below:
+        </p>
+
+        <div class="detail-box">
+          <div><strong>Name:</strong> <%= form.name %></div>
+          <div><strong>Email:</strong> <%= form.email %></div>
+          <div><strong>Mobile:</strong> <%= form.mobile %></div>
+          <div><strong>City:</strong> <%= form.city %></div>
+
+          <!-- ✅ FIXED HERE -->
+          <div>
+            <strong>Course Applied:</strong>
+            <%= form.courseId?.title || "N/A" %>
+          </div>
+
+          <div><strong>Status:</strong> <%= form.status %></div>
+
+          <div>
+            <strong>Submitted At:</strong>
+            <%= new Date(form.createdAt).toLocaleString() %>
+          </div>
+        </div>
+
+        <p>Please review this application at your earliest convenience.</p>
+
+        <a
+          class="support-link"
+          href="mailto:<%= process.env.ADMIN_MAIL %>"
+          style="
+            display: inline-block;
+            background-color: #3b82f6;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 26px;
+            border-radius: 999px;
+            font-weight: 600;
+          "
+        >
+          Contact Admin
+        </a>
+      </div>
+
+      <div class="footer">
+        &copy; <%= new Date().getFullYear() %> Your Company. All rights
+        reserved.
+      </div>
+    </div>
+  </body>
+</html>

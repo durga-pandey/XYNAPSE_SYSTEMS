@@ -1,0 +1,33 @@
+// mockInternships.js
+export const internships = [
+  {
+    _id: "1",
+    name: "Rishav Raj",
+    email: "rishav@example.com",
+    phone: "9876543210",
+    course: "Web Development",
+    year: "3rd",
+    department: "Computer Science",
+    status: "pending",
+    isActive: true,
+    resumeUrl: { secure_url: "/resumes/rishav.pdf" },
+    offerLetterUrl: { secure_url: "/letters/offer1.pdf" },
+    certificateUrl: { secure_url: "/certs/cert1.pdf" },
+    experienceLetterUrl: { secure_url: "/experience/exp1.pdf" },
+  },
+  {
+    _id: "2",
+    name: "Amit Singh",
+    email: "amit@example.com",
+    phone: "9123456789",
+    course: "Data Science",
+    year: "2nd",
+    department: "IT",
+    status: "selected",
+    isActive: true,
+    resumeUrl: { secure_url: "/resumes/amit.pdf" },
+    offerLetterUrl: { secure_url: "/letters/offer2.pdf" },
+    certificateUrl: { secure_url: "/certs/cert2.pdf" },
+    experienceLetterUrl: { secure_url: "/experience/exp2.pdf" },
+  },
+];

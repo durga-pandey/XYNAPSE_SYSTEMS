@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New College Application</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body style="margin:0; padding:0; background-color:#f1f5f9; font-family:Arial, Helvetica, sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f1f5f9; padding:20px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0"
+          style="max-width:600px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+
+          <tr>
+            <td style="background:#0ea5e9; padding:20px;">
+              <h2 style="margin:0; color:#ffffff; font-size:20px;">
+                📩 New College Application
+              </h2>
+              <p style="margin:5px 0 0; color:#e0f2fe; font-size:14px;">
+                Program: <strong><%= programType %></strong>
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:24px; color:#0f172a; font-size:14px;">
+              
+              <h3 style="margin:0 0 12px; font-size:16px; color:#020617;">
+                🏫 Institution Details
+              </h3>
+
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
+                <tr>
+                  <td style="padding:6px 0;"><strong>College Name:</strong></td>
+                  <td style="padding:6px 0;"><%= collegeName %></td>
+                </tr>
+                <tr>
+                  <td style="padding:6px 0;"><strong>Institution Type:</strong></td>
+                  <td style="padding:6px 0;"><%= institutionType %></td>
+                </tr>
+              </table>
+
+              <hr style="border:none; border-top:1px solid #e5e7eb; margin:16px 0;" />
+
+              <h3 style="margin:0 0 12px; font-size:16px;">
+                👤 Contact Person
+              </h3>
+
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding:6px 0;"><strong>Name:</strong></td>
+                  <td style="padding:6px 0;"><%= contactPerson %></td>
+                </tr>
+
+                <% if (designation) { %>
+                <tr>
+                  <td style="padding:6px 0;"><strong>Designation:</strong></td>
+                  <td style="padding:6px 0;"><%= designation %></td>
+                </tr>
+                <% } %>
+
+                <tr>
+                  <td style="padding:6px 0;"><strong>Email:</strong></td>
+                  <td style="padding:6px 0;">
+                    <a href="mailto:<%= email %>" style="color:#0ea5e9; text-decoration:none;">
+                      <%= email %>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td style="padding:6px 0;"><strong>Phone:</strong></td>
+                  <td style="padding:6px 0;">
+                    <a href="tel:<%= phone %>" style="color:#0ea5e9; text-decoration:none;">
+                      <%= phone %>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <% if (message) { %>
+              <hr style="border:none; border-top:1px solid #e5e7eb; margin:16px 0;" />
+
+              <h3 style="margin:0 0 8px; font-size:16px;">
+                💬 Message
+              </h3>
+              <p style="margin:0; color:#334155; line-height:1.6;">
+                <%= message %>
+              </p>
+              <% } %>
+
+              <hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;" />
+
+              <table width="100%" cellpadding="0" cellspacing="0" style="font-size:13px; color:#475569;">
+                <tr>
+                  <td><strong>Application ID:</strong></td>
+                  <td align="right"><%= applicationId %></td>
+                </tr>
+                <tr>
+                  <td><strong>Submitted At:</strong></td>
+                  <td align="right"><%= submittedAt %></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background:#f8fafc; padding:16px; text-align:center; font-size:12px; color:#64748b;">
+              This is an automated notification from the website.<br />
+              Please do not reply to this email.
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

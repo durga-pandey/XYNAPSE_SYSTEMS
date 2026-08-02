@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Experience Letter</title>
+    <style>
+      body {
+        font-family: "Times New Roman", serif;
+        margin: 50px;
+        line-height: 1.6;
+        color: #000;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header img {
+        height: 50px;
+        margin-bottom: 10px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+        color: #0046be;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      .header hr {
+        border: 1px solid #0046be;
+        width: 60px;
+        margin: 10px auto 0 auto;
+      }
+
+      .content p {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .section-box {
+        background-color: #f2f8ff;
+        padding: 15px 20px;
+        border-left: 4px solid #0046be;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        margin-left: 20px;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      ul li::before {
+        content: "•";
+        color: #0046be;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+      }
+
+      .signature {
+        margin-top: 50px;
+        text-align: right;
+      }
+
+      .signature img {
+        height: 50px;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="<%= logoBase64 %>" alt="Institute Logo" style="height: 100px" />
+      <h1>Experience Letter</h1>
+      <hr />
+    </div>
+
+    <div class="content">
+      <p>
+        Date: <strong>
+          <%= (application.experiencePoints && application.experiencePoints.date) ? application.experiencePoints.date : new Date().toLocaleDateString() %>
+        </strong>
+      </p>
+
+      <p>To Whomsoever It May Concern,</p>
+
+      <p>
+        This is to certify that <strong><%= application.name %></strong> has
+        successfully completed an internship with
+        <strong>XYNAPSE SYSTEM</strong> in the
+        <strong><%= application.department %></strong> department from
+        <strong><%= (application.experiencePoints && application.experiencePoints.startDate) ? application.experiencePoints.startDate : 'N/A' %></strong> to
+        <strong><%= (application.experiencePoints && application.experiencePoints.endDate) ? application.experiencePoints.endDate : 'N/A' %></strong>.
+      </p>
+
+      <p>
+        During the internship period, <%= application.name %> actively
+        contributed to the following tasks and responsibilities:
+      </p>
+
+      <div class="section-box">
+        <ul>
+          <% 
+            var responsibilities = (application.experiencePoints && application.experiencePoints.responsibilities) ? application.experiencePoints.responsibilities : [];
+            responsibilities.forEach(function(item) { 
+          %>
+            <li><%= item %></li>
+          <% }); %>
+        </ul>
+      </div>
+
+      <p>
+        We hereby acknowledge <%= application.name %>'s contributions and
+        recommend them for future endeavors. We wish them all the best in their
+        professional career.
+      </p>
+    </div>
+
+    <div class="signature">
+      <img
+        src="<%= (application.experiencePoints && application.experiencePoints.signatureImage) ? application.experiencePoints.signatureImage : 'https://via.placeholder.com/120x40?text=Signature' %>"
+        alt="Signature"
+      />
+      <p>
+        <strong>
+          <%= (application.experiencePoints && application.experiencePoints.signatoryName) ? application.experiencePoints.signatoryName : 'Head of Department' %>
+        </strong>
+      </p>
+      <p>
+        <%= (application.experiencePoints && application.experiencePoints.signatoryDesignation) ? application.experiencePoints.signatoryDesignation : 'Institute Name' %>
+      </p>
+    </div>
+
+    <div class="footer">
+      www.institute.com | contact@institute.com | +91-XXXXXXXXXX
+    </div>
+  </body>
+</html>

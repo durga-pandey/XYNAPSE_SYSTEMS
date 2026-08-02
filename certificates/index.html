@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate</title>
+    <style>
+        /* CSS Wahi hai jo tumne di hai, bas images ke path dynamic kar diye hain */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Raleway', sans-serif; background: #e8e8e8; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .certificate-wrapper { width: 950px; aspect-ratio: 1.41 / 1; background: white; padding: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .outer-border { border: 2px solid #C9A84C; height: 100%; padding: 6px; position: relative; }
+        .inner-border { border: 1px solid #C9A84C; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 30px 50px; position: relative; }
+        
+        /* Watermark & Ribbons */
+        .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 400px; color: #002B5B; opacity: 0.03; z-index: 0; }
+        .ribbon-container { position: absolute; top: -5px; right: 40px; z-index: 10; }
+        .blue-ribbon { width: 100px; height: 150px; background: #0a3e79; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%); display: flex; justify-content: center; padding-top: 12px; }
+
+        /* Typography & Layout */
+        .main-title { font-family: 'Cinzel', serif; font-size: 52px; color: #002B5B; margin-top: 5px; z-index: 1; }
+        .student-name { font-family: 'Great Vibes', cursive; font-size: 52px; color: #002B5B; border-bottom: 1px solid #eee; margin: 5px 0; z-index: 1; }
+        .details-section { display: flex; width: 100%; justify-content: center; gap: 40px; z-index: 1; }
+        .footer-row { width: 100%; display: flex; justify-content: space-between; align-items: flex-end; z-index: 1; }
+        .line { border-top: 1px solid #C9A84C; margin: 4px 0; }
+    </style>
+</head>
+<body>
+    <div class="certificate-wrapper">
+        <div class="outer-border">
+            <div class="inner-border">
+                <div class="watermark">★</div>
+                
+                <div class="ribbon-container">
+                    <div class="blue-ribbon">
+                        <img src="https://png.pngtree.com/png-vector/20220202/ourmid/pngtree-blank-gold-certificate-with-red-ribbon-png-image_4376623.png" style="width: 60px; height: 60px;">
+                    </div>
+                </div>
+
+                <div class="header">
+                    <img src="<%= logoSrc %>" style="height: 100px;">
+                </div>
+
+                <h1 class="main-title">CERTIFICATE</h1>
+                <p style="letter-spacing: 4px; color: #444; border-top: 1px solid #C9A84C;">OF COMPLETION</p>
+
+                <p style="font-family: 'Playfair Display'; font-style: italic; margin-top: 10px;">Proudly Certify that</p>
+                <div class="student-name"><%= certificate.metadata.studentName %></div>
+
+                <p style="text-align: center; color: #555; max-width: 80%;">
+                    has successfully completed the <b><%= certificate.metadata.courseTitle %></b> program 
+                    and demonstrated Grade <b><%= certificate.metadata.grade %></b> performance.
+                </p>
+
+                <div class="details-section">
+                    <div class="detail-item">
+                        <h4>DURATION</h4>
+                        <p><%= certificate.metadata.duration %></p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>GRADE</h4>
+                        <p><%= certificate.metadata.grade %></p>
+                    </div>
+                </div>
+
+                <div class="footer-row">
+                    <div class="sig-box">
+                        <div style="font-family: 'Great Vibes'; font-size: 24px;">Director Sign</div>
+                        <div class="line"></div>
+                        <p style="font-size: 11px;">COMPANY DIRECTOR</p>
+                    </div>
+                    <div class="date-box">
+                        <p><%= new Date().toLocaleDateString('en-GB') %></p>
+                        <div class="line"></div>
+                        <p style="font-size: 9px;">ISSUED DATE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

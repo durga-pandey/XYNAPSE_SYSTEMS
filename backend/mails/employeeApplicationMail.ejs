@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Employee Application</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f6fa;
+        color: #333;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .header {
+        text-align: center;
+        border-bottom: 2px solid #1e3a8a;
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 26px;
+        color: #1e3a8a;
+      }
+
+      .header p {
+        margin: 5px 0 0 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      .section h2 {
+        font-size: 18px;
+        color: #1e3a8a;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+      }
+
+      .section p {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+
+      .section p span {
+        font-weight: 600;
+        color: #111;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      table th,
+      table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        font-size: 14px;
+        text-align: left;
+      }
+
+      table th {
+        background-color: #1e3a8a;
+        color: #fff;
+      }
+
+      .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 25px;
+      }
+
+      a {
+        color: #1e3a8a;
+        text-decoration: none;
+      }
+
+      .attachments ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .attachments li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>XYNAPSE SYSTEM</h1>
+        <p>New Employee Application Received</p>
+      </div>
+
+      <div class="section">
+        <h2>Applicant Details</h2>
+        <p><strong>Name:</strong> <span><%= application.name %></span></p>
+        <p><strong>Email:</strong> <span><%= application.email %></span></p>
+        <p><strong>Phone:</strong> <span><%= application.phone %></span></p>
+        <p><strong>Gender:</strong> <span><%= application.gender %></span></p>
+        <p>
+          <strong>Date of Birth:</strong>
+          <span
+            ><%= application.dob ? new
+            Date(application.dob).toLocaleDateString() : '-' %></span
+          >
+        </p>
+        <p>
+          <strong>Position Applied:</strong>
+          <span><%= application.positionApplied %></span>
+        </p>
+        <p>
+          <strong>Department:</strong>
+          <span><%= application.department %></span>
+        </p>
+        <p>
+          <strong>Experience:</strong>
+          <span><%= application.experience || '-' %></span>
+        </p>
+        <p>
+          <strong>Qualifications:</strong>
+          <span><%= application.qualifications || '-' %></span>
+        </p>
+        <p>
+          <strong>Message:</strong>
+          <span><%= application.message || '-' %></span>
+        </p>
+        <p>
+          <strong>Application Source:</strong>
+          <span><%= application.applicationSource %></span>
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Address</h2>
+        <p>
+          <span>
+            <%= application.address.line1 %>, <%= application.address.line2 ||
+            '' %><br />
+            <%= application.address.city %>, <%= application.address.state %>,
+            <%= application.address.country %> - <%= application.address.zipCode
+            %>
+          </span>
+        </p>
+      </div>
+
+      <div class="section attachments">
+        <h2>Resume & Attachments</h2>
+        <% if(application.resumeUrl) { %>
+        <p>
+          Resume:
+          <a href="<%= application.resumeUrl %>" target="_blank">View Resume</a>
+        </p>
+        <% } %> <% if(application.attachments && application.attachments.length
+        > 0) { %>
+        <ul>
+          <% application.attachments.forEach(att => { %>
+          <li>
+            <a href="<%= att.fileUrl %>" target="_blank"><%= att.fileType %></a>
+          </li>
+          <% }) %>
+        </ul>
+        <% } %>
+      </div>
+
+      <div class="footer">
+        © <%= new Date().getFullYear() %> XYNAPSE SYSTEM. All rights reserved.
+      </div>
+    </div>
+  </body>
+</html>

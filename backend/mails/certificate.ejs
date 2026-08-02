@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xynapse Systems Certificate</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Cinzel:wght@700&family=Great+Vibes&family=Raleway:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 950px 780px;
+      margin: 0;
+    }
+
+    body,
+    html {
+      background: #e8e8e8;
+      width: 950px;
+      height: 780px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .certificate-wrapper {
+      width: 950px;
+      height: 780px;
+      width: 100%;
+      aspect-ratio: 1.41 / 1;
+      background: white;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .outer-border {
+      border: 2px solid #C9A84C;
+      height: 100%;
+      padding: 6px;
+      position: relative;
+    }
+
+    .inner-border {
+      border: 1px solid #C9A84C;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 50px;
+      position: relative;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 400px;
+      color: #002B5B;
+      opacity: 0.03;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .ribbon-container {
+      position: absolute;
+      top: -5px;
+      right: 40px;
+      z-index: 10;
+    }
+
+    .blue-ribbon {
+      width: 100px;
+      height: 150px;
+      background: #0a3e79;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+      display: flex;
+      justify-content: center;
+      padding-top: 12px;
+    }
+
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 52px;
+      color: #002B5B;
+      letter-spacing: 6px;
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .sub-title {
+      font-size: 16px;
+      letter-spacing: 4px;
+      color: #444;
+      border-top: 1px solid #C9A84C;
+      padding-top: 4px;
+      margin-bottom: 5px;
+      z-index: 1;
+    }
+
+    .proudly {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .student-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 52px;
+      color: #002B5B;
+      margin: 5px 0;
+      border-bottom: 1px solid #eee;
+      min-width: 350px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .body-desc {
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      line-height: 1.5;
+      max-width: 85%;
+      margin-bottom: 15px;
+      z-index: 1;
+    }
+
+    .details-section {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 1;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 30%;
+    }
+
+    .icon-circle {
+      min-width: 35px;
+      height: 35px;
+      border: 1.2px solid #002B5B;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #002B5B;
+      font-size: 14px;
+    }
+
+    .detail-content h4 {
+      font-size: 10px;
+      color: #002B5B;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #C9A84C;
+      display: inline-block;
+    }
+
+    .detail-content p {
+      font-size: 10px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .footer-row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 10px;
+      z-index: 1;
+    }
+
+    .sig-box {
+      text-align: center;
+      width: 180px;
+    }
+
+    .signature-font {
+      font-family: 'Great Vibes', cursive;
+      font-size: 24px;
+      color: #002B5B;
+    }
+
+    .line {
+      border-top: 1px solid #C9A84C;
+      margin: 4px 0;
+    }
+
+    .sig-name {
+      font-weight: 700;
+      font-size: 11px;
+      color: #002B5B;
+      text-transform: uppercase;
+    }
+
+    .sig-rank {
+      font-size: 9px;
+      color: #666;
+    }
+
+    .seal-circle {
+      width: 70px;
+      height: 70px;
+      border: 1.5px dashed #C9A84C;
+      border-radius: 50%;
+      padding: 2px;
+    }
+
+    .seal-inner {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #C9A84C;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .seal-inner span {
+      font-size: 7px;
+      font-weight: 700;
+      color: #C9A84C;
+    }
+
+    .date-box {
+      text-align: right;
+      width: 150px;
+    }
+
+    .date-box p {
+      font-size: 11px;
+      font-weight: 700;
+      color: #002B5B;
+    }
+
+    .date-label {
+      font-size: 9px;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="certificate-wrapper">
+    <div class="outer-border">
+      <div class="inner-border">
+        <div class="watermark">★</div>
+        <div class="ribbon-container">
+          <div class="blue-ribbon">
+            <img
+              src="https://png.pngtree.com/png-vector/20220202/ourmid/pngtree-blank-gold-certificate-with-red-ribbon-png-image_4376623.png"
+              alt="Medal" style="width: 60px; height: 60px;">
+          </div>
+        </div>
+
+        <div class="header">
+          <div class="logo-box">
+            <img src="<%= logoBase64 %>" alt="Xynapse Logo"
+              style="height: 120px; width: auto; object-fit: contain; z-index: 1;">
+          </div>
+        </div>
+
+        <h1 class="main-title">CERTIFICATE</h1>
+        <p class="sub-title">OF INTERNSHIP</p>
+
+        <p class="proudly">Proudly Certify that</p>
+        <div class="student-name">
+          <%= name %>
+        </div>
+
+        <p class="body-desc">
+          has successfully completed the internship program and demonstrated exemplary performance and
+          dedication during the tenure.
+        </p>
+
+        <div class="details-section">
+          <div class="detail-item">
+            <div class="icon-circle">📅</div>
+            <div class="detail-content">
+              <h4>Duration</h4>
+              <p>
+                <%= certificateData.startDate %> - <%= certificateData.endDate %>
+              </p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="icon-circle">🎓</div>
+            <div class="detail-content">
+              <h4>Domain</h4>
+              <p>
+                <%= certificateData.domain %>
+              </p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <div class="icon-circle">🏢</div>
+            <div class="detail-content">
+              <h4>Location</h4>
+              <p>
+                <%= certificateData.location %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-row">
+          <div class="sig-box">
+            <div class="signature-font">
+              <%= certificateData.signatoryName %>
+            </div>
+            <div class="line"></div>
+            <p class="sig-name">SIGNATORY</p>
+            <p class="sig-rank">
+              <%= certificateData.signatoryDesignation %>
+            </p>
+          </div>
+
+          <div class="seal-center">
+            <div class="seal-circle">
+              <div class="seal-inner">
+                <span>OFFICIAL</span>
+                <span>SEAL</span>
+                <span style="font-size: 10px;">★</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="date-box">
+            <p>
+              <%= certificateData.endDate %>
+            </p>
+            <div class="line"></div>
+            <p class="date-label">ISSUE DATE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
